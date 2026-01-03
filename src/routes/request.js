@@ -54,7 +54,7 @@ requestRouter.post(
       res.json({
         message: `${req.user.firstName} ${status}${
           status === "interested" ? " in" : " "
-        } ${userExist.firstName}`,
+        } you`,
         data,
       });
     } catch (err) {
