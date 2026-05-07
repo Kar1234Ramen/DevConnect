@@ -50,11 +50,19 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
+      lowercase: true,
       validate(value) {
         if (!["male", "female", "other"].includes(value)) {
           throw new Error("Gender data is invalid");
         }
       },
+    },
+    isPremium: {
+      type: Boolean,
+      default: false,
+    },
+    membershipType: {
+      type: String,
     },
     photoUrl: {
       type: String,
@@ -84,7 +92,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 userSchema.methods.getJWT = async function () {
@@ -103,7 +111,7 @@ userSchema.methods.validatePassword = async function (passwordInputByUser) {
 
   const isPasswordValid = await bcrypt.compare(
     passwordInputByUser,
-    hashedPassword
+    hashedPassword,
   );
 
   return isPasswordValid;
