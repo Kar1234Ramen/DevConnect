@@ -22,7 +22,7 @@ const connectionRequestSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 //creating compound index
@@ -40,7 +40,7 @@ connectionRequestSchema.pre("save", function (next) {
 
 const ConnectionRequest = new mongoose.model(
   "ConnectionRequest",
-  connectionRequestSchema
+  connectionRequestSchema,
 );
 
 module.exports = ConnectionRequest;
